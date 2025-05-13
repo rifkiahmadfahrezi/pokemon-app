@@ -3,6 +3,7 @@
 import { usePokemon } from './hooks/use-pokemon'
 import { Button } from '@/components/button'
 import { PokemonPopup } from './pokemon-popup'
+import { Card } from '@/components/card'
 
 export const PokemonList = () => {
   const { data, isLoading, error, fetchNext, fetchPrev, refetch } = usePokemon()
@@ -35,13 +36,10 @@ export const PokemonList = () => {
     <>
       <div className="grid mt-8 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {data?.results.map((item) => (
-          <div
-            key={item.name}
-            className="p-2 bg-background shadow rounded-md border hover:bg-foreground hover:text-background"
-          >
+          <Card key={item.name}>
             <h3 className="capitalize font-medium text-lg my-3">{item.name}</h3>
             <PokemonPopup url={item.url} />
-          </div>
+          </Card>
         ))}
       </div>
       <div className="flex items-center justify-between gap-2 mt-4 flex-wrap">
